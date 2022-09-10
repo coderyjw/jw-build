@@ -3,9 +3,8 @@
 const { program } = require("commander");
 const checkNode = require("../lib/checkNode");
 const pkg = require("../package.json");
-const startServer = require("../lib/start/start");
+const startServer = require("../lib/start/startServer");
 const buildServer = require("../lib/build/build");
-
 const MIN_NODE_VERSION = "8.9.0";
 (async () => {
   try {
