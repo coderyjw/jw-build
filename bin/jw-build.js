@@ -31,8 +31,19 @@ const MIN_NODE_VERSION = "8.9.0";
       .allowUnknownOption()
       .action(buildServer);
 
+    program
+      .option("-d, --debug", "开启调试模式")
+      .hook("preAction", (thisCommand, actionCommand) => {
+        const { debug = false } = actionCommand.optsWithGlobals();
+        if (debug) {
+          process.env.LOG_LEVEL = "verbose";
+        } else {
+          process.env.LOG_LEVEL = "info";
+        }
+      });
+
     program.parse(process.argv);
   } catch (e) {
-    console.log(e);
+    log.error(e);
   }
 })();
