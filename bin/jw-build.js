@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+const { checkDebug } = require("../lib/utils/index");
+checkDebug();
+
 const { program } = require("commander");
 const checkNode = require("../lib/checkNode");
 const pkg = require("../package.json");
