@@ -6,6 +6,7 @@ const pkg = require("../package.json");
 const startServer = require("../lib/start/startServer");
 const buildServer = require("../lib/build/build");
 const MIN_NODE_VERSION = "8.9.0";
+
 (async () => {
   try {
     if (!checkNode(">=" + MIN_NODE_VERSION)) {
