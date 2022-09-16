@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "jw-build start --debug --config jw-build-config.js",
-    "dev1": "jw-build start --debug --config jw-build-config.mjs"
+    "dev1": "jw-build start --debug --config jw-build-config.mjs",
+    "dev2": "jw-build start --debug --config jw-build-config.json"
   },
   "author": "",
   "license": "ISC"
