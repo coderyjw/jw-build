@@ -3,15 +3,9 @@ module.exports = {
   plugins: ["jw-build-test"],
   hooks: [
     [
-      "created",
+      "start",
       function (context) {
-        console.log("this is created hook");
-      }
-    ],
-    [
-      "configResolved",
-      (context) => {
-        console.log("this is configResolvef");
+        console.log("start", context);
       }
     ]
   ]

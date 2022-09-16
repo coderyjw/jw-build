@@ -1,11 +1,11 @@
 export default {
-  entry: 'index.js',
-  plugins: ['jw-build-test'],
+  entry: "index.js",
+  plugins: ["jw-build-test"],
   hooks: [
     [
-      "created",
+      "start",
       function (context) {
-        console.log("this is created hook");
+        console.log("start", context);
       }
     ]
   ]
