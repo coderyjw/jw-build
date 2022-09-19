@@ -1,3 +1,3 @@
 module.exports = (context) => {
-  console.log("module start hook commonjs", context);
+  context.log("module start hook commonjs", context);
 };

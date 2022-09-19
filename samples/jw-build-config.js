@@ -5,7 +5,13 @@ module.exports = {
     [
       "start",
       function (context) {
-        console.log("start", context);
+        context.log.verbose("这是一个hook: start");
+      }
+    ],
+    [
+      "pluginHook",
+      function (context) {
+        context.log.verbose("这是一个hook: pluginHook");
       }
     ]
   ]

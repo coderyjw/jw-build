@@ -5,7 +5,7 @@ export default {
     [
       "start",
       function (context) {
-        console.log("start", context);
+        context.log.verbose("这是一个hook: start");
       }
     ]
   ]
