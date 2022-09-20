@@ -1,11 +1,12 @@
+const path = require("path");
 module.exports = function (api, options) {
   const { getWebpackConfig, setValue, getValue, emitHooks, log } = api;
 
   const config = getWebpackConfig();
   config
     // 修改 entry 配置
-    .entry("index")
-    .add("src/index.js")
+    .entry("login")
+    .add(path.resolve(process.cwd(), "src/login.js"))
     .end()
     // 修改 output 配置
     .output.path("dist")
