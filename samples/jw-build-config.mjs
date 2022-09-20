@@ -1,6 +1,6 @@
 export default {
   entry: "index.js",
-  plugins: ["jw-build-test"],
+  plugins: ["./plugins/jw-build-test"],
   hooks: [
     [
       "start",
