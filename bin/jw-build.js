@@ -24,6 +24,7 @@ const log = require("../lib/utils/log");
     program
       .command("start")
       .option("-c, --config <config>", "配置文件路径")
+      .option("--custom-webpack-path <customWebpackPath>", "自定义webpack路径")
       .description("start service by jw-build")
       .allowUnknownOption()
       .action(startServer);
@@ -32,6 +33,7 @@ const log = require("../lib/utils/log");
     program
       .command("build")
       .option("-c, --config <config>", "配置文件路径")
+      .option("--custom-webpack-path <customWebpackPath>", "自定义webpack路径")
       .description("build service by jw-build")
       .allowUnknownOption()
       .action(buildServer);
