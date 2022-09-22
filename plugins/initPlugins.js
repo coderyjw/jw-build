@@ -3,7 +3,7 @@ const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = function (api, options) {
   const { getWebpackConfig, log } = api;
@@ -105,7 +105,24 @@ module.exports = function (api, options) {
   ]);
 
   // 5. CleanWebpackPlugin
-  config.plugin('CleanWebpackPlugin').use(CleanWebpackPlugin, [])
+  config.plugin("CleanWebpackPlugin").use(CleanWebpackPlugin, []);
+
+  /* optimizations */
+  config.optimization
+    .minimize(true)
+    .usedExports(true)
+    .splitChunks({
+      chunks: "all",
+      minSize: 300 * 1024,
+      name: "common",
+      cacheGroups: {
+        jquery: {
+          name: "jquery",
+          test: /jquery\.js/,
+          chunks: "all",
+        },
+      },
+    });
 
   log.verbose("内置webpack配置", config.toConfig());
 };
