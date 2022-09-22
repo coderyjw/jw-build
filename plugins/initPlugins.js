@@ -1,5 +1,9 @@
 const path = require("path");
+const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = function (api, options) {
   const { getWebpackConfig, log } = api;
@@ -55,6 +59,53 @@ module.exports = function (api, options) {
     .options({
       esModule: false,
     });
+
+  /* 设置plugin */
+
+  // 1. MiniCssExtractPlugin
+  config.plugin("MiniCssExtractPlugin").use(MiniCssExtractPlugin, [
+    {
+      filename: "css/[name].css",
+      chunkFilename: "css/[name].chunk.css",
+    },
+  ]);
+
+  // 2. HtmlWebpackPlugin
+  config.plugin("HtmlWebpackPlugin").use(HtmlWebpackPlugin, [
+    {
+      filename: "index.html",
+      template: path.resolve(dir, "../src/index.html"),
+      chunks: ["index"],
+    },
+    {
+      filename: "login.html",
+      template: path.resolve(dir, "../src/login.html"),
+      chunks: ["login"],
+    },
+  ]);
+
+  // 3. ProvidePlugin
+  config.plugin("ProvidePlugin").use(webpack.ProvidePlugin, [
+    {
+      $: "jquery",
+      jQuery: "jquery",
+    },
+  ]);
+
+  // 4. CopyPlugin
+  config.plugin("CopyPlugin").use(CopyPlugin, [
+    {
+      patterns: [
+        {
+          from: path.resolve(dir, "./src/img"),
+          to: path.resolve(dir, "./dist/img"),
+        },
+      ],
+    },
+  ]);
+
+  // 5. CleanWebpackPlugin
+  config.plugin('CleanWebpackPlugin').use(CleanWebpackPlugin, [])
 
   log.verbose("内置webpack配置", config.toConfig());
 };
