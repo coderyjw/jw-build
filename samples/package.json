@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env JW_BUILD_MODE=production jw-build start --debug --config jw-build-config.js --custom-webpack-path jw-build-config.js",
+    "dev": "cross-env JW_BUILD_MODE=development jw-build start --debug --config jw-build-config.js",
     "dev1": "jw-build start --debug --config jw-build-config.mjs",
     "dev2": "jw-build start --debug --config jw-build-config.json"
   },

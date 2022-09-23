@@ -11,15 +11,17 @@ module.exports = function (api, options) {
   const dir = process.cwd();
   // 获取构建模式mode
   const mode = process.env.JW_BUILD_MODE || "development";
+
   config.mode(mode);
 
   /* 设置entry */
   config.entry("index").add(path.resolve(dir, "./src/index.js")).end();
 
   /* 设置output */
+  log.verbose("path:", path.resolve(dir, "./dist"));
   config.output.filename("js/[name].js").path(path.resolve(dir, "./dist"));
 
-  /* 设置module */
+  // /* 设置module */
   // 1. css-loader mini-css
   config.module
     .rule("css")
@@ -74,12 +76,12 @@ module.exports = function (api, options) {
   config.plugin("HtmlWebpackPlugin").use(HtmlWebpackPlugin, [
     {
       filename: "index.html",
-      template: path.resolve(dir, "../src/index.html"),
+      template: path.resolve(dir, "./src/index.html"),
       chunks: ["index"],
     },
     {
       filename: "login.html",
-      template: path.resolve(dir, "../src/login.html"),
+      template: path.resolve(dir, "./src/login.html"),
       chunks: ["login"],
     },
   ]);
@@ -87,24 +89,24 @@ module.exports = function (api, options) {
   // 3. ProvidePlugin
   config.plugin("ProvidePlugin").use(webpack.ProvidePlugin, [
     {
-      $: "jquery",
+      $: "jquerys",
       jQuery: "jquery",
     },
   ]);
 
   // 4. CopyPlugin
-  config.plugin("CopyPlugin").use(CopyPlugin, [
-    {
-      patterns: [
-        {
-          from: path.resolve(dir, "./src/img"),
-          to: path.resolve(dir, "./dist/img"),
-        },
-      ],
-    },
-  ]);
+  // config.plugin("CopyPlugin").use(CopyPlugin, [
+  //   {
+  //     patterns: [
+  //       {
+  //         from: path.resolve(dir, "./src/img"),
+  //         to: path.resolve(dir, "./dist/img"),
+  //       },
+  //     ],
+  //   },
+  // ]);
 
-  // 5. CleanWebpackPlugin
+  // // 5. CleanWebpackPlugin
   config.plugin("CleanWebpackPlugin").use(CleanWebpackPlugin, []);
 
   /* optimizations */
@@ -124,5 +126,5 @@ module.exports = function (api, options) {
       },
     });
 
-  log.verbose("内置webpack配置", config.toConfig());
+  // log.verbose("内置webpack配置", config.toConfig());
 };

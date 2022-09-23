@@ -1,1 +1,3 @@
-console.log("index");
+import { say } from "./foo";
+
+say("coder");
