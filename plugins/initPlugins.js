@@ -76,13 +76,8 @@ module.exports = function (api, options) {
   config.plugin("HtmlWebpackPlugin").use(HtmlWebpackPlugin, [
     {
       filename: "index.html",
-      template: path.resolve(dir, "./src/index.html"),
+      template: path.resolve(dir, "./public/index.html"),
       chunks: ["index"],
-    },
-    {
-      filename: "login.html",
-      template: path.resolve(dir, "./src/login.html"),
-      chunks: ["login"],
     },
   ]);
 
