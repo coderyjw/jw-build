@@ -20,7 +20,8 @@
     "npmlog": "^6.0.2",
     "semver": "^7.3.7",
     "webpack": "^5.74.0",
-    "webpack-chain": "^6.5.1"
+    "webpack-chain": "^6.5.1",
+    "webpack-dev-server": "^4.11.1"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
